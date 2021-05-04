@@ -18,7 +18,6 @@ function send_message() {
     firebase.database().ref(room_name).push({
         name: user_name,
         message: msg,
-        like: 0
     });
     document.getElementById("msg").value = "";
 }
@@ -38,15 +37,13 @@ function getData() {
 
                 name = message_data['name'];
                 message = message_data['message'];
-                like = message_data['like'];
 
                 name_with_tag = "<h4>" + name + "</h4>";
                 message_with_tag = "<h4 class='message_h4'>" + message + "</h4>";
 
-                like_with_button = "<button class='btn btn-warning' id=" + firebase_message_id + " value=" + like + " onclick='updatelikes(this.id)'>"
                 span_with_tag = "<span class=' glyphicon glyphicon-thumbs-up'> LIKE: " + like + "</span></button><hr>"
 
-                row = name_with_tag + message_with_tag + like_with_button + span_with_tag;
+                row = name_with_tag + message_with_tag + span_with_tag;
                 document.getElementById("output").innerHTML += row;
             }
         });
